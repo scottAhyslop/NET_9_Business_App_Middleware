@@ -3,9 +3,12 @@ using NET_9_Business_App_Middleware.MiddlewareComponents;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+//Instatiates services for the custom middleware component classes and become objects in the pipeline by calling the IvokeAsync method. Can be tested and confirmed by breakpoints and response output.
+
 //register the custom middleware component service from its class containing the built-in interface IMiddleware.
-//instatiates the service for the custom middleware component class and becomes an object in the pipeline by calling the IvokeAsync method. Tested and confirmed by breakpoints and response output.
 builder.Services.AddTransient<CustomDemonstrationware>();
+
 //register CustomErrorHandler service from its class containing the built-in interface IMiddleware.
 builder.Services.AddTransient<CustomErrorHandler>();
 
@@ -19,11 +22,11 @@ app.UseMiddleware<CustomErrorHandler>();//This is a demonstration of the use of 
 // Middleware #1
 app.Use(async (HttpContext context, RequestDelegate next) =>
 {
-    await context.Response.WriteAsync("Middleware #1: Before calling next\r\n");
+    await context.Response.WriteAsync("Middleware #1: Before calling next<br/>");
     
     await next(context);
 
-    await context.Response.WriteAsync("Middleware #1: After calling next\r\n");
+    await context.Response.WriteAsync("Middleware #1: After calling next<br/>");
 });
 
 //After creation of custom middleware component class, the service is initialized and is inserted after the first middleware component in the pipeline.
@@ -107,7 +110,7 @@ app.Run(async (context) =>
 // Middleware #2
 app.Use(async (context, next) =>
 {
-    throw new ApplicationException("Testing for error condition");
+    //throw new ApplicationException("Testing for error condition");//line inserted to test CustomErrorHandler middleware component.
 
     await context.Response.WriteAsync("Middleware #2: Before calling next<br/>");
 

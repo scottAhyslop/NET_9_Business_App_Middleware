@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "F:\\NET_9_Sample\\NET_9_Business_App_Middleware\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C0ABC249-DBA2-440A-8E38-9CEF8B6DF55E}|NET_9_Business_App_Middleware.csproj|f:\\net_9_sample\\net_9_business_app_middleware\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0ABC249-DBA2-440A-8E38-9CEF8B6DF55E}|NET_9_Business_App_Middleware.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C0ABC249-DBA2-440A-8E38-9CEF8B6DF55E}|NET_9_Business_App_Middleware.csproj|f:\\net_9_sample\\net_9_business_app_middleware\\middlewarecomponents\\customerrorhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C0ABC249-DBA2-440A-8E38-9CEF8B6DF55E}|NET_9_Business_App_Middleware.csproj|solutionrelative:middlewarecomponents\\customerrorhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0ABC249-DBA2-440A-8E38-9CEF8B6DF55E}|NET_9_Business_App_Middleware.csproj|f:\\net_9_sample\\net_9_business_app_middleware\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0ABC249-DBA2-440A-8E38-9CEF8B6DF55E}|NET_9_Business_App_Middleware.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C0ABC249-DBA2-440A-8E38-9CEF8B6DF55E}|NET_9_Business_App_Middleware.csproj|f:\\net_9_sample\\net_9_business_app_middleware\\middlewarecomponents\\customdemonstrationware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -22,25 +22,41 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 6,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0504ff91-9d61-11d0-a794-00a0c9110051}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{be4d7042-ba3f-11d2-840e-00c04f9902c1}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{605322a2-17ae-43f4-b60f-766556e46c87}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{28836128-fc2c-11d2-a433-00c04f72d18a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{ecb7191a-597b-41f5-9843-03a4cf275dde}"
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "CustomErrorHandler.cs",
               "DocumentMoniker": "F:\\NET_9_Sample\\NET_9_Business_App_Middleware\\MiddlewareComponents\\CustomErrorHandler.cs",
               "RelativeDocumentMoniker": "MiddlewareComponents\\CustomErrorHandler.cs",
               "ToolTip": "F:\\NET_9_Sample\\NET_9_Business_App_Middleware\\MiddlewareComponents\\CustomErrorHandler.cs",
               "RelativeToolTip": "MiddlewareComponents\\CustomErrorHandler.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAASAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-31T20:22:57.431Z",
               "EditorCaption": ""
@@ -55,18 +71,17 @@
               "RelativeToolTip": "MiddlewareComponents\\CustomDemonstrationware.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-31T19:41:03.13Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-31T19:41:03.13Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "F:\\NET_9_Sample\\NET_9_Business_App_Middleware\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "F:\\NET_9_Sample\\NET_9_Business_App_Middleware\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAADgAAAAAAAAAAAAAAHQAAAADAAAAAAAAAA==",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAABoAAABNAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-31T03:59:23.227Z",
               "EditorCaption": ""
