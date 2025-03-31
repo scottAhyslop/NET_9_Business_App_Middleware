@@ -16,7 +16,34 @@ app.Use(async (HttpContext context, RequestDelegate next) =>
     await context.Response.WriteAsync("Middleware #1: After calling next\r\n");
 });
 
-//Using app.Map() method to demonstrate that .Map() method creates a branched pipeline that is executed when the request path matches the specified path. It branches to another Pipeline, does that branch's computations and then returns to original pipeline. 
+//Using app.MapWhen() to show conditional branching in the pipeline. The .MapWhen() method creates a branched pipeline that is executed when the request path matches the specified path. It branches to another Pipeline, does that branch's computations and then returns to original pipeline, if its conditions are met. Confirmed by test
+
+app.MapWhen((context) => {
+
+    return context.Request.Path.StartsWithSegments("/employees") 
+        && context.Request.Query.ContainsKey("id");
+    }, 
+    
+    (appBuilder) =>
+{
+    appBuilder.Use(async (HttpContext context, RequestDelegate next) =>
+    {
+        await context.Response.WriteAsync("Middleware #4: Before calling next\r\n");
+        await next(context);
+        await context.Response.WriteAsync("Middleware #4: After calling next\r\n");
+
+    });
+
+    appBuilder.Use(async (HttpContext context, RequestDelegate next) =>
+    {
+        await context.Response.WriteAsync("Middleware #7: Before calling next\r\n");
+        await next(context);
+        await context.Response.WriteAsync("Middleware #7: After calling next\r\n");
+    });
+});
+
+
+//Using app.Map() method to demonstrate that .Map() method creates a branched pipeline that is executed when the request path matches the specified path. It branches to another Pipeline, does that branch's computations and then returns to original pipeline. Confirmed by test
 app.Map("/employees", (appBuilder) =>
 {
     appBuilder.Use(async (HttpContext context, RequestDelegate next) =>
