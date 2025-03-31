@@ -16,7 +16,33 @@ app.Use(async (HttpContext context, RequestDelegate next) =>
     await context.Response.WriteAsync("Middleware #1: After calling next\r\n");
 });
 
-//Using app.MapWhen() to show conditional branching in the pipeline. The .MapWhen() method creates a branched pipeline that is executed when the request path matches the specified path. It branches to another Pipeline, does that branch's computations and then returns to original pipeline, if its conditions are met. Confirmed by test
+//app.UseWhen() method is used to conditionally add middleware to the pipeline in a rejoinable bridge. The .UseWhen() method creates a branched pipeline that is executed separately from the main pipeline.  It then does its compuatioons and returns back to the main pipeline when finished.  Response also passes back through to the main pipeline.
+app.UseWhen((context) => {
+
+    return context.Request.Path.StartsWithSegments("/employees")
+        && context.Request.Query.ContainsKey("id");
+},
+
+    (appBuilder) =>
+    {
+        appBuilder.Use(async (HttpContext context, RequestDelegate next) =>
+        {
+            await context.Response.WriteAsync("Middleware #8: Before calling next\r\n");
+            await next(context);
+            await context.Response.WriteAsync("Middleware #8: After calling next\r\n");
+
+        });
+
+        appBuilder.Use(async (HttpContext context, RequestDelegate next) =>
+        {
+            await context.Response.WriteAsync("Middleware #9: Before calling next\r\n");
+            await next(context);
+            await context.Response.WriteAsync("Middleware #9: After calling next\r\n");
+        });
+    });
+
+
+/*//Using app.MapWhen() to show conditional branching in the pipeline. The .MapWhen() method creates a branched pipeline that is executed when the request path matches the specified path. It branches to another Pipeline, does that branch's computations and then returns to original pipeline, if its conditions are met. Confirmed by test
 
 app.MapWhen((context) => {
 
@@ -40,10 +66,8 @@ app.MapWhen((context) => {
         await next(context);
         await context.Response.WriteAsync("Middleware #7: After calling next\r\n");
     });
-});
-
-
-//Using app.Map() method to demonstrate that .Map() method creates a branched pipeline that is executed when the request path matches the specified path. It branches to another Pipeline, does that branch's computations and then returns to original pipeline. Confirmed by test
+});*/
+/*//Using app.Map() method to demonstrate that .Map() method creates a branched pipeline that is executed when the request path matches the specified path. It branches to another Pipeline, does that branch's computations and then returns to original pipeline. Confirmed by test
 app.Map("/employees", (appBuilder) =>
 {
     appBuilder.Use(async (HttpContext context, RequestDelegate next) =>
@@ -60,8 +84,14 @@ app.Map("/employees", (appBuilder) =>
         await context.Response.WriteAsync("Middleware #6: After calling next\r\n");
     });
 });
+*/
+/*// Middleware #2 using  app.Run() method, demonstrating that .Run() method always creates a terminating middleware component that completes the HTTP response and returns to the previous middleware component in the pipeline. Breakpoints set and verified.
+app.Run(async (context) =>
+{
+    await context.Response.WriteAsync("Middleware #2: Before calling next\r\n");
 
-
+    
+});*/
 // Middleware #2
 app.Use(async (context, next) =>
 {
@@ -73,13 +103,7 @@ app.Use(async (context, next) =>
 });
 
 
-/*// Middleware #2 using  app.Run() method, demonstrating that .Run() method always creates a terminating middleware component that completes the HTTP response and returns to the previous middleware component in the pipeline. Breakpoints set and verified.
-app.Run(async (context) =>
-{
-    await context.Response.WriteAsync("Middleware #2: Before calling next\r\n");
 
-    
-});*/
 
 // Middleware #3
 app.Use(async (HttpContext context, RequestDelegate next) =>
