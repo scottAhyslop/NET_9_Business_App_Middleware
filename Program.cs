@@ -6,10 +6,13 @@ var builder = WebApplication.CreateBuilder(args);
 //register the custom middleware component service from its class containing the built-in interface IMiddleware.
 //instatiates the service for the custom middleware component class and becomes an object in the pipeline by calling the IvokeAsync method. Tested and confirmed by breakpoints and response output.
 builder.Services.AddTransient<CustomDemonstrationware>();
+//register CustomErrorHandler service from its class containing the built-in interface IMiddleware.
+builder.Services.AddTransient<CustomErrorHandler>();
 
 var app = builder.Build();
 
 
+app.UseMiddleware<CustomErrorHandler>();//This is a demonstration of the use of a custom error handler middleware component. The service is initialized and is inserted at the beginning of the pipeline. The service is then started using the custom error handler middleware component class.
 
 //Three example middleware components are added to the application pipeline. Each middleware component writes a message to the response stream before and after calling the next middleware component in the pipeline. The Run method is called to complete the application pipeline. This is a demonstration of the call order of the middleware components in the pipeline.Only a demo for real world example. 
 
@@ -25,7 +28,7 @@ app.Use(async (HttpContext context, RequestDelegate next) =>
 
 //After creation of custom middleware component class, the service is initialized and is inserted after the first middleware component in the pipeline.
 //Start the service using the custome middleware component class.
-app.UseMiddleware<CustomDemonstrationware>();
+app.UseMiddleware<CustomDemonstrationware>();//make sure it's in the proper place so it's implemented in the pipeline in the right time and order.
 
 /*//app.UseWhen() method is used to conditionally add middleware to the pipeline in a rejoinable bridge. The .UseWhen() method creates a branched pipeline that is executed separately from the main pipeline.  It then does its compuatioons and returns back to the main pipeline when finished.  Response also passes back through to the main pipeline. Test confirmed by breakpoints and response output.
 app.UseWhen((context) => {
@@ -104,21 +107,23 @@ app.Run(async (context) =>
 // Middleware #2
 app.Use(async (context, next) =>
 {
-    await context.Response.WriteAsync("Middleware #2: Before calling next\r\n");
+    throw new ApplicationException("Testing for error condition");
+
+    await context.Response.WriteAsync("Middleware #2: Before calling next<br/>");
 
     await next(context);
 
-    await context.Response.WriteAsync("Middleware #2: After calling next\r\n");
+    await context.Response.WriteAsync("Middleware #2: After calling next<br/>");
 });
 
 // Middleware #3
 app.Use(async (HttpContext context, RequestDelegate next) =>
 {
-    await context.Response.WriteAsync("Middleware #3: Before calling next\r\n");
+    await context.Response.WriteAsync("Middleware #3: Before calling next<br/>");
 
     await next(context);
 
-    await context.Response.WriteAsync("Middleware #3: After calling next\r\n");
+    await context.Response.WriteAsync("Middleware #3: After calling next<br/>");
 });
 
 app.Run();//always creates a terminating middleware component that completes the HTTP response.
