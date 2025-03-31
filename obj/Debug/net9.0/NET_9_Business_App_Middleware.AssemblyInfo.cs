@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NET_9_Business_App_Middleware")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1ba6548328f8d88e124e1b7a694321f1b3b12bd7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+01b3eca313954a31d1e4c246fbe83d3b4b64dd12")]
 [assembly: System.Reflection.AssemblyProductAttribute("NET_9_Business_App_Middleware")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NET_9_Business_App_Middleware")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
